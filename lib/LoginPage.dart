@@ -67,7 +67,7 @@ class LoginPage extends StatelessWidget {
 
                 child: Center(
                     child: RaisedButton.icon(
-                      onPressed: () {Navigator.push(context, new MaterialPageRoute(builder: (context) =>HomePage()));},
+                      onPressed: () {Navigator.push(context, new MaterialPageRoute(builder: (context) =>MyHomePage()));},
                       icon: Icon(Icons.arrow_forward_ios),
                       label: Text("Login"),
                       color: Colors.blueAccent,
