@@ -115,7 +115,7 @@ class _WelcomepageState extends State<Welcomepage> with TickerProviderStateMixin
               left: 0,
               child: FadeAnimation(1, Container(
                 width: width,
-                height: 400,
+                height:  MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/images/cubes.jpg'),
@@ -129,7 +129,7 @@ class _WelcomepageState extends State<Welcomepage> with TickerProviderStateMixin
               left: 0,
               child: FadeAnimation(1.3,Container(
                 width: width,
-                height: 400,
+                height:  MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('assets/images/cubes.jpg'),
@@ -143,7 +143,7 @@ class _WelcomepageState extends State<Welcomepage> with TickerProviderStateMixin
               left: 0,
               child: FadeAnimation(1.6,Container(
                 width: width,
-                height: 400,
+                height:  MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('assets/images/cubes.jpg'),
@@ -173,7 +173,7 @@ class _WelcomepageState extends State<Welcomepage> with TickerProviderStateMixin
                             animation: _widthController,
                             builder: (context, child ) =>  Container(
                               width: _widthAnimation.value,
-                              height: 80,
+                              height: 100,
                               padding: EdgeInsets.all(20),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(50),

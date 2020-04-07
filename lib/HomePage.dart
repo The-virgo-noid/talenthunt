@@ -1,7 +1,11 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import './drawer_pages/profile.dart';
+import './drawer_pages/world.dart';
+import './drawer_pages/talents.dart';
 
-import 'drawer pages/profile.dart';
+
+
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -9,7 +13,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+  bool darkTheme = false;
   int _currentIndex = 0;
   PageController _pageController;
   ScrollController _scrollController;
@@ -30,88 +34,71 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Talent Hunt"),
-        centerTitle: true,
-      ),
+    return MaterialApp(
+       theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
+      home: Scaffold(
 
 
-      drawer: Drawer(
 
-          child: Column(
-              children: <Widget>[
+        drawer: Drawer(
 
-                new UserAccountsDrawerHeader(accountName: new Text("User"), accountEmail: new Text("User mail")), //upper bar
-
-                new ListTile(
-                    title: new Text ("Profile"),
-                    trailing: new Icon (Icons.account_circle),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      Navigator.push(context, new MaterialPageRoute(builder: (context) => Profile()));
-
-                    }
-                ),
-              ]
-          )
-      ),
-
-      body: SizedBox.expand(
-        child: PageView(
-
-          controller: _pageController,
-          onPageChanged: (index) {
-            setState(() => _currentIndex = index);
-          },
-          children: <Widget>[
-            Scaffold(                                                 //first page of bottom navigation
-
-              appBar: AppBar(
-                title: Text('Home Page'),
-                centerTitle: true,
-                backgroundColor: Colors.lightGreen,
-
-              ),
-              body: ListView(
-                controller: _scrollController,
+            child: Column(
                 children: <Widget>[
 
-                ],
-              ),
+                  new UserAccountsDrawerHeader(accountName: new Text("SETTINGS"), accountEmail: new Text("Personalised settings")), //upper bar
+
+
+                  ListTile(
+                    title: Text("Dark Theme"),                                        //dark theme switch
+                    trailing: Switch(
+                      value: darkTheme,
+                      onChanged: (changed) {
+                        setState(() {
+                          darkTheme = changed;
+                        });
+                      },
+                    ),
+                  )              ]
+            )
+        ),
+
+        body: SizedBox.expand(
+          child: PageView(
+
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() => _currentIndex = index);
+            },
+            children: <Widget>[
+              World(),
+              Talents(),
+              Profile(),
+            ],
+          ),
+        ),
+
+        bottomNavigationBar: BottomNavyBar(
+          selectedIndex: _currentIndex,
+          onItemSelected: (index) {
+            setState(() => _currentIndex = index);
+            _pageController.jumpToPage(index);
+          },
+          items: <BottomNavyBarItem>[
+            BottomNavyBarItem(
+                title: Text('World'),
+                icon: Icon(Icons.home)
             ),
-            Container(color: Colors.red,),                 //second page of bottom navigation
+            BottomNavyBarItem(
+                title: Text('Talents'),
+                icon: Icon(Icons.add_to_photos)
+            ),
+            BottomNavyBarItem(
+                title: Text('User Profile'),
+                icon: Icon(Icons.assignment_ind)
+            ),
 
-            Container(color: Colors.green,),               //third page of bottom navigation
-
-            Container(color: Colors.blue,),                //fourth page of bottom navigation
           ],
         ),
-      ),
-
-      bottomNavigationBar: BottomNavyBar(
-        selectedIndex: _currentIndex,
-        onItemSelected: (index) {
-          setState(() => _currentIndex = index);
-          _pageController.jumpToPage(index);
-        },
-        items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-              title: Text('Home'),
-              icon: Icon(Icons.home)
-          ),
-          BottomNavyBarItem(
-              title: Text('Talents'),
-              icon: Icon(Icons.add_to_photos)
-          ),
-          BottomNavyBarItem(
-              title: Text('Followers'),
-              icon: Icon(Icons.assignment_ind)
-          ),
-          BottomNavyBarItem(
-              title: Text('Setting'),
-              icon: Icon(Icons.settings)
-          ),
-        ],
       ),
     );
   }

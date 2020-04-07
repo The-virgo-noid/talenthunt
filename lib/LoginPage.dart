@@ -76,19 +76,22 @@ class LoginPage extends StatelessWidget {
                     )
                 ),
             )),
-            FadeAnimation(1.8, Center(
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FadeAnimation(1.8, Center(
 
-              child: Center(
-                  child: RaisedButton.icon(
-                    onPressed: () {Navigator.push(context, new MaterialPageRoute(builder: (context) =>SignUpForm()));},
-                    icon: Icon(Icons.arrow_forward_ios),
-                    label: Text("Sign Up"),
-                    color: Colors.blueAccent,
-                    splashColor: Colors.indigoAccent,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-                  )
-              ),
-            )),
+                child: Center(
+                    child: RaisedButton.icon(
+                      onPressed: () {Navigator.push(context, new MaterialPageRoute(builder: (context) =>SignUpForm()));},
+                      icon: Icon(Icons.arrow_forward_ios),
+                      label: Text("Sign Up"),
+                      color: Colors.blueAccent,
+                      splashColor: Colors.indigoAccent,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                    )
+                ),
+              )),
+            ),
           ],
         ),
       ),
