@@ -194,7 +194,7 @@ class _WelcomepageState extends State<Welcomepage> with TickerProviderStateMixin
                                           builder: (context, child) => Transform.scale(
                                             scale: _scale2Animation.value,
                                              child: Container(
-                                              width: 60, height: 60,
+                                              width: 40, height: 60,
                                               decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                                color: Colors.lightBlueAccent
