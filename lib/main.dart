@@ -197,7 +197,7 @@ class _WelcomepageState extends State<Welcomepage> with TickerProviderStateMixin
                                               width: 60, height: 60,
                                               decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                               color: Colors.deepPurpleAccent
+                                               color: Colors.lightBlueAccent
                                               ),
                                                child: hideIcon == false? Icon(Icons.arrow_forward, color: Colors.white,) : Container(),
                                           )
