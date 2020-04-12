@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:talenthunt/Constants/CarouselItems.dart';
+import 'package:talenthunt/drawer_pages/CustomPage.dart';
+
 class World extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -7,7 +11,6 @@ class World extends StatelessWidget {
         title: Text('World'),
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
-
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -18,9 +21,29 @@ class World extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
+        child: carousel(),
       ),
-
-
     );
   }
+}
+
+Widget carousel() {
+  return CarouselSlider(
+    height: 400.0,
+    items: carouselImages.map((i) {
+      return Builder(
+        builder: (BuildContext context) {
+          return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => CustomPage(i)),
+                );
+              },
+              child: carouselContainer(context, i));
+        },
+      );
+    }).toList(),
+  );
 }
