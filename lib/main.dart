@@ -28,7 +28,6 @@ class _WelcomepageState extends State<Welcomepage>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _scaleController =
         AnimationController(vsync: this, duration: Duration(microseconds: 300));

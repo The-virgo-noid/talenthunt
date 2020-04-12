@@ -7,6 +7,13 @@ List<dynamic> carouselImages = [
   "assets/catimages/sports.png",
 ];
 
+List<String> imagesTitle = [
+  "Dance",
+  "Others",
+  "Singing",
+  "Sports",
+];
+
 Widget carouselContainer(context, i) {
   return Container(
     width: MediaQuery.of(context).size.width,
