@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:talenthunt/widgets/Carousel.dart';
+
 class World extends StatelessWidget {
+  String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -7,7 +10,6 @@ class World extends StatelessWidget {
         title: Text('World'),
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
-
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -18,9 +20,8 @@ class World extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
+        child: carousel(),
       ),
-
-
     );
   }
 }
