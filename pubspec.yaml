@@ -18,6 +18,10 @@ environment:
 
 dependencies:
   image_picker: 0.6.4
+  flutter_speed_dial: 1.2.5
+
+
+
   flutter:
     sdk: flutter
   simple_animations: ^1.1.3
