@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:talenthunt/widgets/Carousel.dart';
 
 class World extends StatelessWidget {
-  String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
