@@ -54,9 +54,9 @@ class _TalentsState extends State<Talents> {
       appBar: AppBar(
         title: Text("Talent Uploads"),
         centerTitle: true,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.black54,
       ),
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white, (same here you add the color of your choice)
       body: Container(
         child: Center(
           child: Column(
@@ -68,11 +68,7 @@ class _TalentsState extends State<Talents> {
         ),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage("assets/images/purpbg.jpg"),
-          fit: BoxFit.cover,
-        )),
+
       ),
       floatingActionButton: SpeedDial(
         curve: Curves.easeOutExpo,

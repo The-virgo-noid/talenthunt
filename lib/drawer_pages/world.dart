@@ -5,20 +5,16 @@ class World extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.white,      (here you  can set the background color of your choice)
       appBar: AppBar(
         title: Text('World'),
         centerTitle: true,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.black54,
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/purpbg.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
+
         child: carousel(),
       ),
     );

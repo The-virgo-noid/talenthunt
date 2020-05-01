@@ -12,7 +12,7 @@ class LoginPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/purple.jpg"),
+            image: AssetImage("assets/images/crayons.jpg"),
             fit: BoxFit.cover,
           ),
         ),
@@ -87,7 +87,7 @@ class LoginPage extends StatelessWidget {
                   height: 50.0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.0),
-                    color: Colors.blueAccent,
+                    color: Colors.lightBlueAccent,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -121,7 +121,7 @@ class LoginPage extends StatelessWidget {
                   height: 50.0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.0),
-                    color: Colors.blueAccent,
+                    color: Colors.lightBlueAccent,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

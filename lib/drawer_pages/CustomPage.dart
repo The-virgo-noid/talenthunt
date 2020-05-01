@@ -9,7 +9,7 @@ class CustomPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
         centerTitle: true,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.black54,
       ),
       body: GestureDetector(
         onDoubleTap: () {

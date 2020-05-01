@@ -29,7 +29,7 @@ showDialogBox(BuildContext context, Map profileData) {
         return AlertDialog(
           title: Center(child: Text("Choose Source")),
           content: Container(
-            height: MediaQuery.of(context).size.height * 0.13,
+            height: MediaQuery.of(context).size.height * 0.14,
             child: Column(
               children: <Widget>[
                 FlatButton(

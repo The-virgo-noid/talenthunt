@@ -38,103 +38,100 @@ class _ProfileState extends State<Profile> {
       return Center(child: CircularProgressIndicator());
     }
     return SafeArea(
-      child: Theme(
-        data: ThemeData.dark(),
-        child: Scaffold(
-          body: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 25.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 25.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: FaIcon(
+                      FontAwesomeIcons.atom,
+                      size: 35.0,
+                    ),
+                  ),
+                  Text(
+                    "PROFILE",
+                    style: TextStyle(
+                        fontSize: 20.0, fontWeight: FontWeight.w600),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: InkWell(
+                      onTap: () {
+                        print("ButtonTapped");
+                        Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                                builder: (context) =>
+                                    EditScreen(profileData)));
+                        ;
+                      },
                       child: FaIcon(
-                        FontAwesomeIcons.bars,
+                        FontAwesomeIcons.cog,
                         size: 35.0,
                       ),
                     ),
-                    Text(
-                      "PROFILE",
-                      style: TextStyle(
-                          fontSize: 30.0, fontWeight: FontWeight.w600),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10.0),
-                      child: InkWell(
-                        onTap: () {
-                          print("ButtonTapped");
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (context) =>
-                                      EditScreen(profileData)));
-                          ;
-                        },
-                        child: FaIcon(
-                          FontAwesomeIcons.cog,
-                          size: 35.0,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                CircleAvatar(
-                  radius: 70,
-                  backgroundImage: NetworkImage(profileData["url"]),
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                Text(
-                  profileData['name'],
-                  style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w300),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Text(
-                  profileData['city'],
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  height: 25.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    followCards("Followers", "10M"),
-                    followCards("Following", "10"),
-                  ],
-                ),
-                SizedBox(
-                  height: 50.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    customButtons("Message", () {}),
-                    customButtons("Follow", () {}),
-                  ],
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: customContainer(
-                      context, "About Me", profileData['aboutme']),
-                ),
-                customContainer(
-                    context, "Points to be collected", profileData['points'])
-              ],
-            ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
+              CircleAvatar(
+                radius: 70,
+                backgroundImage: NetworkImage(profileData["url"]),
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+              Text(
+                profileData['name'],
+                style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w300),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Text(
+                profileData['city'],
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: 25.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  followCards("Followers", "10M"),
+                  followCards("Following", "10"),
+                ],
+              ),
+              SizedBox(
+                height: 50.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  customButtons("Message", () {}),
+                  customButtons("Follow", () {}),
+                ],
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              InkWell(
+                onTap: () {},
+                child: customContainer(
+                    context, "About Me", profileData['aboutme']),
+              ),
+              customContainer(
+                  context, "Points to be collected", profileData['points'])
+            ],
           ),
         ),
       ),
