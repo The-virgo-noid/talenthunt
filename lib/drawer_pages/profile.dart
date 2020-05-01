@@ -1,9 +1,42 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../widgets/EditScreen.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
+  @override
+  _ProfileState createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  Map<String, dynamic> profileData = {};
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    var snapRef =
+        await Firestore.instance.collection('profile').document('123').get();
+
+    var proData = snapRef.data;
+    profileData = {
+      "name": proData['name'],
+      "city": proData['city'],
+      "aboutme": proData['aboutme'],
+      "points": proData['points'],
+      "url": proData['avatarId']
+    };
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (profileData.isEmpty) {
+      return Center(child: CircularProgressIndicator());
+    }
     return SafeArea(
       child: Theme(
         data: ThemeData.dark(),
@@ -12,7 +45,7 @@ class Profile extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 10.0,
+                  height: 25.0,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,9 +64,20 @@ class Profile extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0),
-                      child: FaIcon(
-                        FontAwesomeIcons.cog,
-                        size: 35.0,
+                      child: InkWell(
+                        onTap: () {
+                          print("ButtonTapped");
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) =>
+                                      EditScreen(profileData)));
+                          ;
+                        },
+                        child: FaIcon(
+                          FontAwesomeIcons.cog,
+                          size: 35.0,
+                        ),
                       ),
                     ),
                   ],
@@ -43,22 +87,20 @@ class Profile extends StatelessWidget {
                 ),
                 CircleAvatar(
                   radius: 70,
-                  backgroundImage: AssetImage(
-                    'assets/images/profile.jpg',
-                  ),
+                  backgroundImage: NetworkImage(profileData["url"]),
                 ),
                 SizedBox(
                   height: 15.0,
                 ),
                 Text(
-                  "Tony Stark",
+                  profileData['name'],
                   style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w300),
                 ),
                 SizedBox(
                   height: 10.0,
                 ),
                 Text(
-                  "New York",
+                  profileData['city'],
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
@@ -86,11 +128,11 @@ class Profile extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {},
-                  child: customContainer(context, "About Me",
-                      "Genius. Billionaire. Playboy. Philanthropist."),
+                  child: customContainer(
+                      context, "About Me", profileData['aboutme']),
                 ),
-                customContainer(context, "Points to be collected",
-                    "Net Worth : \$12.4 billion")
+                customContainer(
+                    context, "Points to be collected", profileData['points'])
               ],
             ),
           ),

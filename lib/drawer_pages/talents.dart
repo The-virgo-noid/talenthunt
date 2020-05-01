@@ -3,34 +3,32 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-
 class Talents extends StatefulWidget {
-  Talents({Key key}): super(key: key);
+  Talents({Key key}) : super(key: key);
 
   @override
   _TalentsState createState() => _TalentsState();
 }
 
 class _TalentsState extends State<Talents> {
-
   File imageFile;
 
-  _openGallery(BuildContext context) async{
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);    //syncs with gallery and app
+  _openGallery(BuildContext context) async {
+    var image = await ImagePicker.pickImage(
+        source: ImageSource.gallery); //syncs with gallery and app
     setState(() {
       imageFile = image;
       Navigator.of(context).pop();
     });
-
   }
 
-  _openCamera(BuildContext context) async{
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);    //syncs with camera and app
+  _openCamera(BuildContext context) async {
+    var image = await ImagePicker.pickImage(
+        source: ImageSource.camera); //syncs with camera and app
     setState(() {
       imageFile = image;
       Navigator.of(context).pop();
     });
-
   }
 
   @override
@@ -38,17 +36,15 @@ class _TalentsState extends State<Talents> {
     super.initState();
   }
 
-  Widget  _decideImage() {
-    if(imageFile == null) {
-      return Text(
-          "Nothing Selected !",
+  Widget _decideImage() {
+    if (imageFile == null) {
+      return Text("Nothing Selected !",
           style: TextStyle(
             fontSize: 30.0,
             color: Colors.white,
-          )
-      );
+          ));
     } else {
-      return Image.file(imageFile, width: 500,height: 500);
+      return Image.file(imageFile, width: 500, height: 500);
     }
   }
 
@@ -56,7 +52,7 @@ class _TalentsState extends State<Talents> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("Talent Uploads"),
+        title: Text("Talent Uploads"),
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
       ),
@@ -73,11 +69,10 @@ class _TalentsState extends State<Talents> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/purpbg.jpg"),
-            fit: BoxFit.cover,
-          )
-        ),
+            image: DecorationImage(
+          image: AssetImage("assets/images/purpbg.jpg"),
+          fit: BoxFit.cover,
+        )),
       ),
       floatingActionButton: SpeedDial(
         curve: Curves.easeOutExpo,
@@ -92,7 +87,7 @@ class _TalentsState extends State<Talents> {
             backgroundColor: Colors.deepPurple,
             label: "Upload from Gallery",
             onTap: () {
-             _openGallery(context);
+              _openGallery(context);
             },
           ),
           SpeedDialChild(
@@ -108,5 +103,3 @@ class _TalentsState extends State<Talents> {
     );
   }
 }
-
-
