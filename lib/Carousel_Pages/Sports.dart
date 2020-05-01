@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CustomPage extends StatelessWidget {
-  CustomPage(this.title);
-  final title;
+class SportsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text("Sports"),
         centerTitle: true,
         backgroundColor: Colors.black54,
       ),

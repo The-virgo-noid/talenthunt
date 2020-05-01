@@ -57,8 +57,8 @@ class _ProfileState extends State<Profile> {
                   ),
                   Text(
                     "PROFILE",
-                    style: TextStyle(
-                        fontSize: 20.0, fontWeight: FontWeight.w600),
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 10.0),
@@ -68,9 +68,7 @@ class _ProfileState extends State<Profile> {
                         Navigator.push(
                             context,
                             new MaterialPageRoute(
-                                builder: (context) =>
-                                    EditScreen(profileData)));
-                        ;
+                                builder: (context) => EditScreen(profileData)));
                       },
                       child: FaIcon(
                         FontAwesomeIcons.cog,

@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:talenthunt/widgets/CarouselContainer.dart';
 import 'package:talenthunt/Constants/CarouselItems.dart';
-import 'package:talenthunt/drawer_pages/CustomPage.dart';
 
 Widget carousel() {
-  String title = imagesTitle[0];
+  int index = 0;
   return CarouselSlider(
     onPageChanged: (i) {
-      title = imagesTitle[i];
+      index = i;
     },
     height: 400.0,
     autoPlay: true,
@@ -20,7 +19,7 @@ Widget carousel() {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => CustomPage(title)),
+                      builder: (BuildContext context) => carouselPages[index]),
                 );
               },
               child: carouselContainer(context, i));
