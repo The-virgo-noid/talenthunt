@@ -18,7 +18,6 @@ class _TalentsState extends State<Talents> {
         source: ImageSource.gallery); //syncs with gallery and app
     setState(() {
       imageFile = image;
-      Navigator.of(context).pop();
     });
   }
 
@@ -27,7 +26,6 @@ class _TalentsState extends State<Talents> {
         source: ImageSource.camera); //syncs with camera and app
     setState(() {
       imageFile = image;
-      Navigator.of(context).pop();
     });
   }
 
