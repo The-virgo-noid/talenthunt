@@ -18,6 +18,14 @@ environment:
 
 dependencies:
   flutter_speed_dial: 1.2.5
+  dropdownfield: 1.0.3
+
+  geocoder: 0.2.1
+  location: 3.0.2
+  uuid: 2.0.4
+  http: 0.12.1
+  shared_preferences:
+
 
   flutter:
     sdk: flutter

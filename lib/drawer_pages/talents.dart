@@ -3,8 +3,13 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+import 'package:talenthunt/drawer_pages/uploads.dart';
+//import 'uploads.dart';
+
 class Talents extends StatefulWidget {
   Talents({Key key}) : super(key: key);
+
+  //var _field = ['test1','test2','test3'];
 
   @override
   _TalentsState createState() => _TalentsState();
@@ -54,7 +59,6 @@ class _TalentsState extends State<Talents> {
         centerTitle: true,
         backgroundColor: Colors.black54,
       ),
-      //backgroundColor: Colors.white, (same here you add the color of your choice)
       body: Container(
         child: Center(
           child: Column(
@@ -66,8 +70,8 @@ class _TalentsState extends State<Talents> {
         ),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-
       ),
+
       floatingActionButton: SpeedDial(
         curve: Curves.easeOutExpo,
         animatedIcon: AnimatedIcons.view_list,
@@ -92,8 +96,19 @@ class _TalentsState extends State<Talents> {
               _openCamera(context);
             },
           ),
+          SpeedDialChild(
+            child: Icon(Icons.navigate_next),
+            backgroundColor: Colors.deepPurple,
+            label: "NEXT",
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Uploads()),
+              );
+            },
+          ),
         ],
       ),
     );
+
+
   }
 }
