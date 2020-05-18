@@ -12,12 +12,8 @@ class _UploadsState extends State<Uploads> {
   // us to validate the form
   final _formKey = GlobalKey<FormState>();
   Map<String, dynamic> formData;
-  List<String> field = [
-    'Dance',
-    'Singing',
-    'Sports',
-    'Others',
-  ];
+  List<String> field = [ 'Dance' , 'Singing' , 'Sports' , 'Others', ];
+
 
 
   _UploadsState() {
@@ -53,7 +49,7 @@ class _UploadsState extends State<Uploads> {
                                   onPressed: () async {
                                     if (_formKey.currentState.validate()) {         //  from here is the tick button function u need to sync with ur databse to upload
                                       _formKey.currentState.save();
-                                      _formKey.currentState.save();                 // til here
+                                      _formKey.currentState.save(); // til here
                                       showDialog<String>(
                                           context: context,
                                           builder:
@@ -82,10 +78,12 @@ class _UploadsState extends State<Uploads> {
                                       color: Colors.white
                                     ),
                                     TextField(
+                                      maxLength: 40,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
                                         labelText: 'Write a caption...',
                                         hintText: 'write here..',
+
                                       ),
                                       autofocus: false,
                                     ),
