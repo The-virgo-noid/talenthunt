@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:talenthunt/widgets/Carousel.dart';
 
 class World extends StatelessWidget {
   @override
@@ -7,15 +6,14 @@ class World extends StatelessWidget {
     return Scaffold(
       //backgroundColor: Colors.white,      (here you  can set the background color of your choice)
       appBar: AppBar(
-        title: Text('World'),
+        title: Text('HOME'),
         centerTitle: true,
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.cyan[300],
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
 
-        child: carousel(),
       ),
     );
   }

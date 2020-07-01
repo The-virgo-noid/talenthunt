@@ -57,7 +57,7 @@ class _TalentsState extends State<Talents> {
       appBar: AppBar(
         title: Text("Talent Uploads"),
         centerTitle: true,
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.lightBlueAccent,
       ),
       body: Container(
         child: Center(

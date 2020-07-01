@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import './drawer_pages/profile.dart';
 import './drawer_pages/world.dart';
 import './drawer_pages/talents.dart';
+import './drawer_pages/chat.dart';
+import './drawer_pages/search.dart';
+
+
+
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -60,7 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             children: <Widget>[
               World(),
+              Search(),
               Talents(),
+              Chat(),
               Profile(),
             ],
           ),
@@ -72,11 +79,12 @@ class _MyHomePageState extends State<MyHomePage> {
             _pageController.jumpToPage(index);
           },
           items: <BottomNavyBarItem>[
-            BottomNavyBarItem(title: Text('World'), icon: Icon(Icons.home)),
-            BottomNavyBarItem(
-                title: Text('Talents'), icon: Icon(Icons.add_to_photos)),
-            BottomNavyBarItem(
-                title: Text('User Profile'), icon: Icon(Icons.assignment_ind)),
+            BottomNavyBarItem(title: Text('Home'), icon: Icon(Icons.home)),
+            BottomNavyBarItem(title: Text('Search'), icon: Icon(Icons.search)),
+            BottomNavyBarItem(title: Text('Uploads'), icon: Icon(Icons.add_to_photos)),
+            BottomNavyBarItem(title: Text('Chat'), icon: Icon(Icons.chat)),
+            BottomNavyBarItem(title: Text('Profile'), icon: Icon(Icons.assignment_ind)),
+
           ],
         ),
       ),
