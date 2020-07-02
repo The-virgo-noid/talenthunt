@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+//import 'package:talenthunt/drawer_pages/notification.dart';
 
-class World extends StatelessWidget {
+class World extends StatefulWidget {
+  @override
+  _WorldState createState() => _WorldState();
+}
+
+class _WorldState extends State<World> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,3 +24,13 @@ class World extends StatelessWidget {
     );
   }
 }
+
+//class MyAppbar extends AppBar{
+//  MyAppbar({Key key, Widget title}):
+//      super(key: key, title:title, actions: <Widget>[new IconButton(icon: new Icon(Icons.notification_important), onPressed: () {
+//      Navigator.push(
+//      context,
+//      new MaterialPageRoute(
+//     builder: (context) => Notification()));
+//      },)]);
+//}
