@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:talenthunt/drawer_pages/notification.dart';
+import './notification.dart' as localNotificationPage;
 
 class World extends StatefulWidget {
   @override
@@ -15,11 +15,21 @@ class _WorldState extends State<World> {
         title: Text('HOME'),
         centerTitle: true,
         backgroundColor: Colors.cyan[300],
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.notification_important),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => localNotificationPage.Notification(),
+              ),
+            ),
+          ),
+        ],
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-
       ),
     );
   }
