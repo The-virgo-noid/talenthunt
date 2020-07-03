@@ -4,7 +4,12 @@ import 'package:talenthunt/Animations/FadeAnimation.dart';
 import 'package:page_transition/page_transition.dart';
 import 'LoginPage.dart';
 
-void main() => runApp(MaterialApp(debugShowCheckedModeBanner: false, home: Welcomepage()));
+void main() => runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(
+      accentColor: Colors.cyan[300],
+    ),
+    home: Welcomepage()));
 
 class Welcomepage extends StatefulWidget {
   @override

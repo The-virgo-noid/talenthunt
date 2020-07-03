@@ -33,6 +33,11 @@ class _ProfileState extends State<Profile> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (profileData.isEmpty) {
       return Center(child: CircularProgressIndicator());

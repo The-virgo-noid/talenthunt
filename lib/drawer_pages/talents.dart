@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 import 'package:talenthunt/drawer_pages/uploads.dart';
+import 'package:talenthunt/widgets/CustomAppBar.dart';
 //import 'uploads.dart';
 
 class Talents extends StatefulWidget {
@@ -54,10 +55,8 @@ class _TalentsState extends State<Talents> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Talent Uploads"),
-        centerTitle: true,
-        backgroundColor: Colors.lightBlueAccent,
+      appBar: customAppBar(
+        title: "Talent Uploads",
       ),
       body: Container(
         child: Center(
@@ -71,7 +70,6 @@ class _TalentsState extends State<Talents> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
       ),
-
       floatingActionButton: SpeedDial(
         curve: Curves.easeOutExpo,
         animatedIcon: AnimatedIcons.view_list,
@@ -101,14 +99,14 @@ class _TalentsState extends State<Talents> {
             backgroundColor: Colors.deepPurple,
             label: "NEXT",
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Uploads()),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Uploads()),
               );
             },
           ),
         ],
       ),
     );
-
-
   }
 }

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:talenthunt/widgets/CustomAppBar.dart';
 
 class Notification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Notification"),
-      ),
+      appBar: customAppBar(title: 'Notification'),
       body: Column(
         children: <Widget>[
           SizedBox(

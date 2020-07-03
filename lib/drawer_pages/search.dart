@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:talenthunt/widgets/CustomAppBar.dart';
 
 class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Search'), backgroundColor: Colors.cyan[300],),
+      appBar: customAppBar(title: 'Search'),
     );
   }
 }
