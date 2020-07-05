@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:talenthunt/SignUpForm.dart';
 import 'package:talenthunt/widgets/CustomAppBar.dart';
+import 'package:talenthunt/widgets/EditScreen.dart';
 import './notification.dart' as localNotificationPage;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class World extends StatefulWidget {
   @override
@@ -35,37 +38,70 @@ class _WorldState extends State<World> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Icon(
-                  Icons.more_horiz,
-                  size: 45.0,
+                IconButton(
+                  icon: Icon(
+                    Icons.more_horiz,
+                    size: 45.0,
+                  ),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                        title: Text("Report User"),
+                        content:
+                            Text("Are you sure you want to block this user ?"),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: Text('Report'),
+                            onPressed: () {
+                              print("Add Report Code here");
+                              Navigator.pop(context);
+                            },
+                          ),
+                          FlatButton(
+                            child: Text('Close'),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
                 Column(
                   children: <Widget>[
-                    Icon(
-                      Icons.account_circle,
-                      size: 45.0,
-                    ),
+                    IconButton(
+                        icon: Icon(
+                          Icons.account_circle,
+                          size: 45.0,
+                        ),
+                        onPressed: () {}),
                     SizedBox(
                       height: 30.0,
                     ),
-                    Icon(
-                      Icons.favorite,
-                      size: 45.0,
-                    ),
+                    IconButton(
+                        icon: Icon(
+                          Icons.favorite,
+                          size: 45.0,
+                        ),
+                        onPressed: () {}),
                     SizedBox(
                       height: 30.0,
                     ),
-                    Icon(
-                      Icons.message,
-                      size: 45.0,
-                    ),
+                    IconButton(
+                        icon: FaIcon(
+                          FontAwesomeIcons.commentAlt,
+                          size: 40.0,
+                        ),
+                        onPressed: () {}),
                     SizedBox(
                       height: 30.0,
                     ),
-                    Icon(
-                      Icons.share,
-                      size: 45.0,
-                    ),
+                    IconButton(
+                        icon: Icon(
+                          Icons.share,
+                          size: 45.0,
+                        ),
+                        onPressed: () {}),
                   ],
                 ),
                 SizedBox(
