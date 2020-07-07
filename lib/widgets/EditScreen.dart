@@ -1,6 +1,5 @@
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -12,12 +11,9 @@ pickImage(BuildContext context, Map profileData, ImageSource source) async {
     Fluttertoast.showToast(msg: "No photo was selected");
   } else {
     Fluttertoast.showToast(msg: "Uploading Profile Photo");
-    StorageReference reference =
-        FirebaseStorage.instance.ref().child("profile/");
-    StorageUploadTask uploadTask = reference.putFile(image);
-    StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-    String uri = await taskSnapshot.ref.getDownloadURL();
-    profileData['url'] = uri;
+
+    profileData['url'] =
+        "https://wpcdn.us-east-1.vip.tn-cloud.net/www.channel3000.com/content/uploads/2020/03/Baby-Yoda-1024x576.jpg";
     Fluttertoast.showToast(msg: "Profile Photo Updated");
   }
 }
@@ -54,14 +50,6 @@ showDialogBox(BuildContext context, Map profileData) {
       });
 }
 
-addProfileDataToDatabase(Map data) async {
-  await Firestore.instance.collection('profile').document('123').updateData({
-    'avatarId': data['url'],
-    'aboutme': data['aboutme'],
-    'points': data['points'],
-  });
-}
-
 class EditScreen extends StatelessWidget {
   final Map profileData;
   EditScreen(this.profileData);
@@ -75,8 +63,7 @@ class EditScreen extends StatelessWidget {
         child: Icon(Icons.add),
         onPressed: () async {
           Fluttertoast.showToast(msg: "Saving Profile....");
-          await addProfileDataToDatabase(profileData);
-          Navigator.pop(context);
+          Navigator.pop(context, profileData);
         },
       ),
       body: Center(

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets/EditScreen.dart';
@@ -9,27 +8,18 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  Map<String, dynamic> profileData = {};
+  Map<String, dynamic> profileData = {
+    "url":
+        "https://wpcdn.us-east-1.vip.tn-cloud.net/www.channel3000.com/content/uploads/2020/03/Baby-Yoda-1024x576.jpg",
+    "name": "Yoda",
+    "city": "NY",
+    "aboutme": "About Me",
+    "points": "Points",
+  };
 
   @override
   void initState() {
     super.initState();
-    getData();
-  }
-
-  void getData() async {
-    var snapRef =
-        await Firestore.instance.collection('profile').document('123').get();
-
-    var proData = snapRef.data;
-    profileData = {
-      "name": proData['name'],
-      "city": proData['city'],
-      "aboutme": proData['aboutme'],
-      "points": proData['points'],
-      "url": proData['avatarId']
-    };
-    setState(() {});
   }
 
   @override
@@ -68,12 +58,13 @@ class _ProfileState extends State<Profile> {
                   Padding(
                     padding: const EdgeInsets.only(right: 10.0),
                     child: InkWell(
-                      onTap: () {
+                      onTap: () async {
                         print("ButtonTapped");
-                        Navigator.push(
+                        profileData = await Navigator.push(
                             context,
                             new MaterialPageRoute(
                                 builder: (context) => EditScreen(profileData)));
+                        setState(() {});
                       },
                       child: FaIcon(
                         FontAwesomeIcons.cog,
