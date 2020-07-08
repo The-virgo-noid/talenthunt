@@ -56,7 +56,7 @@ class PrivacyScreen extends StatelessWidget {
             children: <Widget>[
               Icon(
                 icon,
-                size: 20,
+                size: 23,
               ),
               SizedBox(
                 width: 20.0,

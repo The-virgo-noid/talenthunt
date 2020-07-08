@@ -5,7 +5,7 @@ class SecurityScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Privacy"),
+        title: Text("Security"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -29,10 +29,10 @@ class SecurityScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              listButtons(Icons.comment, 'Password'),
-              listButtons(Icons.tag_faces, 'Login Activity'),
-              listButtons(Icons.person, 'Saved Login Info'),
-              listButtons(Icons.block, 'Two Factor Authentication'),
+              listButtons(Icons.security, 'Password'),
+              listButtons(Icons.access_time, 'Login Activity'),
+              listButtons(Icons.info, 'Saved Login Info'),
+              listButtons(Icons.account_circle, 'Two Factor Authentication'),
             ],
           ),
         ),
@@ -55,7 +55,7 @@ class SecurityScreen extends StatelessWidget {
             children: <Widget>[
               Icon(
                 icon,
-                size: 20,
+                size: 23,
               ),
               SizedBox(
                 width: 20.0,
