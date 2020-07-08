@@ -59,6 +59,20 @@ class EditScreen extends StatelessWidget {
 
   List<String> settings = ['Privacy', 'Security'];
 
+  var textfieldDecoration = InputDecoration(
+    contentPadding: EdgeInsets.symmetric(
+      horizontal: 10,
+      vertical: 0,
+    ),
+    border: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.blueAccent,
+      ),
+      borderRadius: BorderRadius.circular(10.0),
+    ),
+    hintText: "Enter Text Here..",
+  );
+
   void gotoScreen(BuildContext context, String name) {
     Widget screen;
     if (name == "Privacy") {
@@ -110,41 +124,51 @@ class EditScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 30.0),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text("About Me"),
-                    SizedBox(
-                      width: 20.0,
+                    Text(
+                      "About Me",
+                      style: TextStyle(fontSize: 18),
                     ),
-                    Expanded(
+                    Container(
+                        width: MediaQuery.of(context).size.width * 0.65,
                         child: TextField(
-                      onChanged: (val) {
-                        profileData['aboutme'] = val;
-                      },
-                      style: TextStyle(fontSize: 20.0),
-                    )),
+                          decoration: textfieldDecoration,
+                          onChanged: (val) {
+                            profileData['aboutme'] = val;
+                          },
+                          style: TextStyle(fontSize: 18.0),
+                        )),
                   ],
                 ),
                 SizedBox(
                   height: 25.0,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text("Points"),
-                    SizedBox(
-                      width: 20.0,
+                    Text(
+                      "Points",
+                      style: TextStyle(fontSize: 18),
                     ),
-                    Expanded(
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.65,
                       child: TextField(
+                        decoration: textfieldDecoration,
                         onChanged: (val) {
                           profileData['points'] = val;
                         },
-                        style: TextStyle(fontSize: 20.0),
+                        style: TextStyle(fontSize: 18.0),
                       ),
                     )
                   ],
                 ),
                 SizedBox(
                   height: 15.0,
+                ),
+                Divider(
+                  color: Colors.grey,
+                  thickness: 1.0,
                 ),
                 Expanded(
                   child: ListView.builder(
@@ -155,8 +179,17 @@ class EditScreen extends StatelessWidget {
                             gotoScreen(context, settings[index]);
                           },
                           child: Container(
-                            margin: EdgeInsets.symmetric(vertical: 20.0),
-                            child: Text(settings[index]),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom:
+                                    BorderSide(color: Colors.grey, width: 1),
+                              ),
+                            ),
+                            padding: EdgeInsets.symmetric(vertical: 20.0),
+                            child: Text(
+                              settings[index],
+                              style: TextStyle(fontSize: 18),
+                            ),
                           ),
                         );
                       }),
