@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:talenthunt/widgets/PrivacyScreen.dart';
+
+import 'SecurityScreen.dart';
 
 pickImage(BuildContext context, Map profileData, ImageSource source) async {
   File image =
@@ -53,72 +56,113 @@ showDialogBox(BuildContext context, Map profileData) {
 class EditScreen extends StatelessWidget {
   final Map profileData;
   EditScreen(this.profileData);
+
+  List<String> settings = ['Privacy', 'Security'];
+
+  void gotoScreen(BuildContext context, String name) {
+    Widget screen;
+    if (name == "Privacy") {
+      screen = PrivacyScreen();
+    } else {
+      screen = SecurityScreen();
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (ctx) => screen),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Edit Profile"),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () async {
-          Fluttertoast.showToast(msg: "Saving Profile....");
-          Navigator.pop(context, profileData);
-        },
-      ),
-      body: Center(
-        child: Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 20.0,
-              ),
-              InkWell(
-                onTap: () {
-                  print("Change Avtar method");
-                  showDialogBox(context, profileData);
-                },
-                child: CircleAvatar(
-                  radius: 60.0,
-                  child: Text("Change Avatar"),
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pop(context, profileData);
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Edit Profile"),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () async {
+            Fluttertoast.showToast(msg: "Saving Profile....");
+            Navigator.pop(context, profileData);
+          },
+        ),
+        body: Center(
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 20.0,
                 ),
-              ),
-              SizedBox(height: 30.0),
-              Row(
-                children: <Widget>[
-                  Text("About Me"),
-                  SizedBox(
-                    width: 20.0,
+                InkWell(
+                  onTap: () {
+                    print("Change Avtar method");
+                    showDialogBox(context, profileData);
+                  },
+                  child: CircleAvatar(
+                    radius: 60.0,
+                    child: Text("Change Avatar"),
                   ),
-                  Expanded(
+                ),
+                SizedBox(height: 30.0),
+                Row(
+                  children: <Widget>[
+                    Text("About Me"),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Expanded(
+                        child: TextField(
+                      onChanged: (val) {
+                        profileData['aboutme'] = val;
+                      },
+                      style: TextStyle(fontSize: 20.0),
+                    )),
+                  ],
+                ),
+                SizedBox(
+                  height: 25.0,
+                ),
+                Row(
+                  children: <Widget>[
+                    Text("Points"),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Expanded(
                       child: TextField(
-                    onChanged: (val) {
-                      profileData['aboutme'] = val;
-                    },
-                    style: TextStyle(fontSize: 20.0),
-                  )),
-                ],
-              ),
-              SizedBox(
-                height: 25.0,
-              ),
-              Row(
-                children: <Widget>[
-                  Text("Points"),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  Expanded(
-                      child: TextField(
-                    onChanged: (val) {
-                      profileData['points'] = val;
-                    },
-                    style: TextStyle(fontSize: 20.0),
-                  )),
-                ],
-              )
-            ],
+                        onChanged: (val) {
+                          profileData['points'] = val;
+                        },
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: settings.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            gotoScreen(context, settings[index]);
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(vertical: 20.0),
+                            child: Text(settings[index]),
+                          ),
+                        );
+                      }),
+                )
+              ],
+            ),
           ),
         ),
       ),
