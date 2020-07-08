@@ -57,9 +57,9 @@ class EditScreen extends StatelessWidget {
   final Map profileData;
   EditScreen(this.profileData);
 
-  List<String> settings = ['Privacy', 'Security'];
+  final List<String> settings = ['Privacy', 'Security'];
 
-  var textfieldDecoration = InputDecoration(
+  final textfieldDecoration = InputDecoration(
     contentPadding: EdgeInsets.symmetric(
       horizontal: 10,
       vertical: 0,
@@ -70,7 +70,7 @@ class EditScreen extends StatelessWidget {
       ),
       borderRadius: BorderRadius.circular(10.0),
     ),
-    hintText: "Enter Text Here..",
+    hintText: "Enter Your Text Here..",
   );
 
   void gotoScreen(BuildContext context, String name) {
