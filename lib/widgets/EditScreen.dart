@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:talenthunt/widgets/PrivacyScreen.dart';
@@ -97,104 +98,162 @@ class EditScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text("Edit Profile"),
         ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () async {
-            Fluttertoast.showToast(msg: "Saving Profile....");
-            Navigator.pop(context, profileData);
-          },
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.fromLTRB(25, 10, 0, 0),
+              child: FloatingActionButton(
+                child: Icon(
+                  FontAwesomeIcons.powerOff,
+                  size: 20,
+                ),
+                onPressed: () async {
+                  Fluttertoast.showToast(msg: "Log Out....");
+                  // Navigator.pop(context, profileData);
+                },
+              ),
+            ),
+            FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () async {
+                Fluttertoast.showToast(msg: "Saving Profile....");
+                Navigator.pop(context, profileData);
+              },
+            ),
+          ],
         ),
-        body: Center(
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.9,
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 20.0,
-                ),
-                InkWell(
-                  onTap: () {
-                    print("Change Avtar method");
-                    showDialogBox(context, profileData);
-                  },
-                  child: CircleAvatar(
-                    radius: 60.0,
-                    child: Text("Change Avatar"),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 20.0,
                   ),
-                ),
-                SizedBox(height: 30.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      "About Me",
-                      style: TextStyle(fontSize: 18),
+                  InkWell(
+                    onTap: () {
+                      print("Change Avtar method");
+                      showDialogBox(context, profileData);
+                    },
+                    child: CircleAvatar(
+                      radius: 60.0,
+                      child: Text("Change Avatar"),
                     ),
-                    Container(
+                  ),
+                  SizedBox(height: 30.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "About Me",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Container(
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          child: TextField(
+                            decoration: textfieldDecoration,
+                            onChanged: (val) {
+                              profileData['aboutme'] = val;
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Points",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Container(
                         width: MediaQuery.of(context).size.width * 0.65,
                         child: TextField(
                           decoration: textfieldDecoration,
                           onChanged: (val) {
-                            profileData['aboutme'] = val;
+                            profileData['points'] = val;
                           },
                           style: TextStyle(fontSize: 18.0),
-                        )),
-                  ],
-                ),
-                SizedBox(
-                  height: 25.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      "Points",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.65,
-                      child: TextField(
-                        decoration: textfieldDecoration,
-                        onChanged: (val) {
-                          profileData['points'] = val;
-                        },
-                        style: TextStyle(fontSize: 18.0),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Divider(
+                    color: Colors.grey,
+                    thickness: 1.0,
+                  ),
+                  ListTile(
+                    onTap: () {
+                      gotoScreen(context, settings[0]);
+                    },
+                    title: Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: Colors.grey, width: 1),
+                        ),
                       ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                Divider(
-                  color: Colors.grey,
-                  thickness: 1.0,
-                ),
-                Expanded(
-                  child: ListView.builder(
-                      itemCount: settings.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            gotoScreen(context, settings[index]);
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border(
-                                bottom:
-                                    BorderSide(color: Colors.grey, width: 1),
-                              ),
-                            ),
-                            padding: EdgeInsets.symmetric(vertical: 20.0),
-                            child: Text(
-                              settings[index],
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ),
-                        );
-                      }),
-                )
-              ],
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      child: Text(
+                        settings[0],
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      gotoScreen(context, settings[1]);
+                    },
+                    title: Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: Colors.grey, width: 1),
+                        ),
+                      ),
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      child: Text(
+                        settings[1],
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(
+                    'Notification Settings',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+                  SwitchListTile(
+                    value: true,
+                    title: Text("Received Notification"),
+                    onChanged: (val) {},
+                  ),
+                  SwitchListTile(
+                    value: false,
+                    title: Text("Received Notification"),
+                    onChanged: (val) {},
+                  ),
+                  SwitchListTile(
+                    value: true,
+                    title: Text("Received Notification"),
+                    onChanged: (val) {},
+                  ),
+                ],
+              ),
             ),
           ),
         ),
