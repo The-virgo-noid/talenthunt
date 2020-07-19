@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dropdownfield/dropdownfield.dart';
-import 'package:talenthunt/widgets/CustomAppBar.dart';
+
 
 class Uploads extends StatefulWidget {
   @override
@@ -12,16 +11,14 @@ class _UploadsState extends State<Uploads> {
   // us to validate the form
   final _formKey = GlobalKey<FormState>();
   Map<String, dynamic> formData;
-  List<String> field = [
-    'Dance',
-    'Singing',
-    'Sports',
-    'Others',
-  ];
+  List<String> field = [ 'Dance' , 'Singing' , 'Sports' , 'Others', ];
+
+
 
   _UploadsState() {
     formData = {
       'Field': '',
+
     };
   }
 
@@ -37,8 +34,10 @@ class _UploadsState extends State<Uploads> {
               } else {
                 if (snapshot.data != null)
                   return Scaffold(
-                    appBar: customAppBar(
-                      title: 'New Post',
+                    appBar: AppBar(
+                      titleSpacing: 10.0,
+                      title: Text('New Post'),
+                      centerTitle: true,
                       actions: <Widget>[
                         Builder(
                           builder: (BuildContext context) {
@@ -47,16 +46,16 @@ class _UploadsState extends State<Uploads> {
                                 iconSize: 30.0,
                                 tooltip: 'Save',
                                 onPressed: () async {
-                                  if (_formKey.currentState.validate()) {
-                                    //  from here is the tick button function u need to sync with ur databse to upload
+                                  if (_formKey.currentState.validate()) {         //  from here is the tick button function u need to sync with ur databse to upload
                                     _formKey.currentState.save();
                                     _formKey.currentState.save(); // til here
                                     showDialog<String>(
                                         context: context,
-                                        builder: (BuildContext dialogContext) =>
+                                        builder:
+                                            (BuildContext dialogContext) =>
                                             AlertDialog(
                                               content: Text(
-                                                  'uploading.....'), //here connect to database
+                                                  'uploading.....'),//here connect to database
                                             ));
                                   }
                                 });
@@ -73,28 +72,20 @@ class _UploadsState extends State<Uploads> {
                         child: SingleChildScrollView(
                           child: Column(
                             children: <Widget>[
-                              Divider(height: 20.0, color: Colors.white),
+                              Divider(
+                                  height: 20.0,
+                                  color: Colors.white
+                              ),
                               TextField(
                                 maxLength: 40,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   labelText: 'Write a caption...',
                                   hintText: 'write here..',
+
                                 ),
                                 autofocus: false,
                               ),
-                              Divider(height: 25.0, color: Colors.black87),
-                              DropDownField(
-                                  value: formData['Field'],
-                                  icon: Icon(Icons.person),
-                                  required: true,
-                                  hintText: 'Choose a Field',
-                                  labelText: 'Field *',
-                                  items: field,
-                                  strict: false,
-                                  setter: (dynamic newValue) {
-                                    formData['Field'] = newValue;
-                                  }),
                             ],
                           ),
                         ),
@@ -112,3 +103,5 @@ class _UploadsState extends State<Uploads> {
     return true;
   }
 }
+
+

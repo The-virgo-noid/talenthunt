@@ -99,7 +99,7 @@ class _WorldState extends State<World> {
                     IconButton(
                         icon: Icon(
                           Icons.share,
-                          size: 45.0,
+                          size: 45.0,        // share command here
                         ),
                         onPressed: () {}),
                   ],

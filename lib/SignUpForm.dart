@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class SignUpForm extends StatelessWidget{
   Widget build(BuildContext context){
@@ -136,6 +137,25 @@ class SignUpState extends State{
             ),
           ),
         ),
+
+      ),
+      floatingActionButton: SpeedDial(
+        curve: Curves.easeOutExpo,
+        child: Icon(Icons.arrow_forward),
+        overlayColor: Colors.black87,
+        backgroundColor: Colors.blueAccent,
+        animatedIconTheme: IconThemeData.fallback(),
+        shape: CircleBorder(),
+        children: [
+          SpeedDialChild(
+            child: Icon(Icons.arrow_forward),
+            backgroundColor: Colors.deepPurple,
+            label: "Next",
+            onTap: () {
+
+            },
+          )
+        ],
       ),
     );
 
