@@ -21,6 +21,12 @@ dependencies:
   dropdownfield: 1.0.3
   curved_navigation_bar: 0.3.3
   photo_manager: 0.5.6
+  path_provider: 1.6.11
+  repository: 2.0.0
+  image_cropper: 1.2.3
+
+
+
 
 
 
