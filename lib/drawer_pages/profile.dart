@@ -63,7 +63,8 @@ class _ProfileState extends State<Profile> {
                         profileData = await Navigator.push(
                             context,
                             new MaterialPageRoute(
-                                builder: (context) => EditScreen(profileData)));
+                                builder: (context) =>
+                                    EditScreen(profileData: profileData)));
                         setState(() {});
                       },
                       child: FaIcon(

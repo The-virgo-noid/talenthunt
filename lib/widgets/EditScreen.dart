@@ -56,7 +56,7 @@ showDialogBox(BuildContext context, Map profileData) {
 
 class EditScreen extends StatelessWidget {
   final Map profileData;
-  EditScreen(this.profileData);
+  EditScreen({this.profileData});
 
   final List<String> settings = ['Privacy', 'Security'];
 
@@ -104,6 +104,7 @@ class EditScreen extends StatelessWidget {
             Container(
               margin: EdgeInsets.fromLTRB(25, 10, 0, 0),
               child: FloatingActionButton(
+                heroTag: "btn1",
                 child: Icon(
                   FontAwesomeIcons.powerOff,
                   size: 20,
@@ -115,6 +116,7 @@ class EditScreen extends StatelessWidget {
               ),
             ),
             FloatingActionButton(
+              heroTag: "btn2",
               child: Icon(Icons.add),
               onPressed: () async {
                 Fluttertoast.showToast(msg: "Saving Profile....");

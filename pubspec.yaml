@@ -24,12 +24,6 @@ dependencies:
   path_provider: 1.6.11
   repository: 2.0.0
   image_cropper: 1.2.3
-
-
-
-
-
-
   geocoder: 0.2.1
   location: 3.0.2
   uuid: 2.0.4

@@ -34,33 +34,33 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-
   // int _page = 0;
   // GlobalKey _bottomNavigationKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return Theme(data: darkTheme ? ThemeData.dark() : ThemeData.light(),
-      child :Scaffold(
+    return Theme(
+      data: darkTheme ? ThemeData.dark() : ThemeData.light(),
+      child: Scaffold(
         drawer: Drawer(
             child: Column(children: <Widget>[
-              new UserAccountsDrawerHeader(
-                  accountName: new Text("SETTINGS"),
-                  accountEmail: new Text("Personalised settings")), //upper bar
+          new UserAccountsDrawerHeader(
+              accountName: new Text("SETTINGS"),
+              accountEmail: new Text("Personalised settings")), //upper bar
 
-              ListTile(
-                title: Text("Dark Theme"), //dark theme switch
-                trailing: Switch(
-                  value: darkTheme,
-                  onChanged: (changed) {
-                    setState(() {
-                      darkTheme = changed;
-                    });
-                  },
-                ),
-              )
-            ])),
-        body:SizedBox.expand(
+          ListTile(
+            title: Text("Dark Theme"), //dark theme switch
+            trailing: Switch(
+              value: darkTheme,
+              onChanged: (changed) {
+                setState(() {
+                  darkTheme = changed;
+                });
+              },
+            ),
+          )
+        ])),
+        body: SizedBox.expand(
           child: PageView(
             controller: _pageController,
             onPageChanged: (index) {
@@ -75,11 +75,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-
         bottomNavigationBar: CurvedNavigationBar(
           // key: _bottomNavigationKey,
           index: 0,
-          height: 50.0,
+          height: 50,
           items: <Widget>[
             Icon(Icons.home, size: 30),
             Icon(Icons.search, size: 30),
@@ -97,17 +96,13 @@ class _MyHomePageState extends State<MyHomePage> {
             //setState(() => _currentIndex = index);
             _pageController.jumpToPage(index);
           },
-
         ),
-
-
       ),
     );
   }
 }
 
 // old nav bar......//
-
 
 //  class MyHomePage extends StatefulWidget {
 //    @override
