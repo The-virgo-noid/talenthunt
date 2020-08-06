@@ -49,13 +49,19 @@ class _CategoriesState extends State<Categories> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                customFilterChipWidget("Comedy", 0, _value0),
-                customFilterChipWidget("Flute", 1, _value1),
-                customFilterChipWidget("Drawing/Artist", 2, _value2),
-                customFilterChipWidget("Handwriting", 3, _value3),
-                customFilterChipWidget("Piano", 4, _value4),
-                customFilterChipWidget("Dance", 5, _value5),
-                customFilterChipWidget("Others..", 12, _value12),
+                customFilterChipWidget(
+                    "Comedy", 0, _value0, Colors.lightBlueAccent),
+                customFilterChipWidget(
+                    "Flute", 1, _value1, Colors.yellowAccent),
+                customFilterChipWidget(
+                    "Drawing/Artist", 2, _value2, Colors.orangeAccent),
+                customFilterChipWidget(
+                    "Handwriting", 3, _value3, Colors.purpleAccent),
+                customFilterChipWidget("Piano", 4, _value4, Colors.cyanAccent),
+                customFilterChipWidget(
+                    "Dance", 5, _value5, Colors.lightGreenAccent),
+                customFilterChipWidget(
+                    "Others..", 12, _value12, Colors.deepOrange),
               ],
             ),
           ),
@@ -63,12 +69,17 @@ class _CategoriesState extends State<Categories> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                customFilterChipWidget("Singing", 6, _value6),
-                customFilterChipWidget("Photography", 7, _value7),
-                customFilterChipWidget("Cube Solving", 8, _value8),
-                customFilterChipWidget("Band", 9, _value9),
-                customFilterChipWidget("Acting", 10, _value10),
-                customFilterChipWidget("Crafting", 11, _value11),
+                customFilterChipWidget(
+                    "Singing", 6, _value6, Colors.greenAccent),
+                customFilterChipWidget(
+                    "Photography", 7, _value7, Colors.pinkAccent),
+                customFilterChipWidget(
+                    "Cube Solving", 8, _value8, Colors.lightGreen),
+                customFilterChipWidget(
+                    "Band", 9, _value9, Colors.deepPurpleAccent),
+                customFilterChipWidget(
+                    "Acting", 10, _value10, Colors.redAccent),
+                customFilterChipWidget("Crafting", 11, _value11, Colors.grey),
                 RaisedButton(
                   child: Text("Next"),
                   onPressed: () {
@@ -131,12 +142,13 @@ class _CategoriesState extends State<Categories> {
     setState(() {});
   }
 
-  Widget customFilterChipWidget(String title, int index, int value) {
+  Widget customFilterChipWidget(
+      String title, int index, int value, Color selectedColor) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: FilterChip(
         pressElevation: 0.0,
-        selectedColor: Colors.lightBlueAccent,
+        selectedColor: selectedColor,
         backgroundColor: Colors.grey[100],
         label: Text(
           title,
@@ -150,265 +162,3 @@ class _CategoriesState extends State<Categories> {
     );
   }
 }
-
-// Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: <Widget>[
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.lightBlueAccent,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Comedy",
-//                   style: textStyle,
-//                 ),
-//                 selected: _value0 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value0 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.greenAccent,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Singing",
-//                   style: textStyle,
-//                 ),
-//                 selected: _value1 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value1 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//             ],
-//           ),
-//           SizedBox(
-//             height: 10.0,
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: <Widget>[
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.yellowAccent,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Flute",
-//                   style: textStyle,
-//                 ),
-//                 selected: _value2 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value2 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.pinkAccent,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Photography",
-//                   style: textStyle,
-//                 ),
-//                 selected: _value3 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value3 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//             ],
-//           ),
-//           SizedBox(
-//             height: 10.0,
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: <Widget>[
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.orangeAccent,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Drawing/Artist",
-//                   style: textStyle1,
-//                 ),
-//                 selected: _value4 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value4 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.lightGreen,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Cube Solving",
-//                   style: textStyle1,
-//                 ),
-//                 selected: _value5 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value5 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//             ],
-//           ),
-//           SizedBox(
-//             height: 10.0,
-//           ),
-//           SizedBox(
-//             height: 10.0,
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: <Widget>[
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.purpleAccent,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Handwriting",
-//                   style: textStyle,
-//                 ),
-//                 selected: _value6 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value6 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.deepPurpleAccent,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Band",
-//                   style: textStyle,
-//                 ),
-//                 selected: _value7 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value7 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//             ],
-//           ),
-//           SizedBox(
-//             height: 10.0,
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: <Widget>[
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.cyanAccent,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Piano",
-//                   style: textStyle,
-//                 ),
-//                 selected: _value8 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value8 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.redAccent,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Acting",
-//                   style: textStyle,
-//                 ),
-//                 selected: _value9 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value9 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//             ],
-//           ),
-//           SizedBox(
-//             height: 10.0,
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: <Widget>[
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.lightGreenAccent,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Dance",
-//                   style: textStyle,
-//                 ),
-//                 selected: _value10 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value10 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.grey,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Crafting",
-//                   style: textStyle,
-//                 ),
-//                 selected: _value11 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value11 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//             ],
-//           ),
-//           SizedBox(
-//             height: 10.0,
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: <Widget>[
-//               FilterChip(
-//                 pressElevation: 0.0,
-//                 selectedColor: Colors.deepOrange,
-//                 backgroundColor: Colors.grey[100],
-//                 label: Text(
-//                   "Others..",
-//                   style: textStyle,
-//                 ),
-//                 selected: _value12 == 0,
-//                 onSelected: (bool selected) {
-//                   setState(() {
-//                     _value12 = selected ? 0 : null;
-//                   });
-//                 },
-//               ),
-//               Divider(height: 20.0, color: Colors.white),
-//               RaisedButton(
-//                 child: Text("Next"),
-//                 onPressed: () {
-//                   Navigator.push(context,
-//                       MaterialPageRoute(builder: (context) => Talents()));
-//                 },
-//                 padding: EdgeInsets.all(10),
-//                 elevation: 10,
-//               ),
-//             ],
-//           ),
