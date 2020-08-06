@@ -1,109 +1,68 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 
-import 'package:talenthunt/drawer_pages/uploads.dart';
-import 'package:talenthunt/widgets/CustomAppBar.dart';
-//import 'uploads.dart';
+
 
 class Talents extends StatefulWidget {
-  Talents({Key key}) : super(key: key);
-
-  //var _field = ['test1','test2','test3'];
-
   @override
   _TalentsState createState() => _TalentsState();
 }
 
 class _TalentsState extends State<Talents> {
-  File imageFile;
+  File _image;
 
-  _openGallery(BuildContext context) async {
-    var image = await ImagePicker.pickImage(
-        source: ImageSource.gallery); //syncs with gallery and app
+  getImageFile(ImageSource source) async {
+    //
+    var image = await ImagePicker.platform.pickImage(source: source);
+    File cropppedFile = await ImageCropper.cropImage(
+      sourcePath: image.path,
+      aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0),
+      maxHeight: 512,
+      maxWidth: 512,
+    );
     setState(() {
-      imageFile = image;
+      _image = cropppedFile;
     });
-  }
-
-  _openCamera(BuildContext context) async {
-    var image = await ImagePicker.pickImage(
-        source: ImageSource.camera); //syncs with camera and app
-    setState(() {
-      imageFile = image;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  Widget _decideImage() {
-    if (imageFile == null) {
-      return Text("Nothing Selected !",
-          style: TextStyle(
-            fontSize: 30.0,
-            color: Colors.white,
-          ));
-    } else {
-      return Image.file(imageFile, width: 500, height: 500);
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
-        title: "Talent Uploads",
+      appBar: AppBar(
+        title: Text("Crop"),
       ),
-      body: Container(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              _decideImage(),
-            ],
+      body: SafeArea(
+        child: Column(children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height / 2.2,
+            child: Center(
+              child: _image == null
+                  ? Text("Image")
+                  : Image.file(
+                _image,
+                height: 200,
+                width: 200,
+              ),
+            ),
           ),
-        ),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+         // Expanded(child: BuildGrid()),
+        ]),
       ),
-      floatingActionButton: SpeedDial(
-        curve: Curves.easeOutExpo,
-        animatedIcon: AnimatedIcons.view_list,
-        overlayColor: Colors.black87,
-        backgroundColor: Colors.blueAccent,
-        animatedIconTheme: IconThemeData.fallback(),
-        shape: CircleBorder(),
-        children: [
-          SpeedDialChild(
-            child: Icon(Icons.photo),
-            backgroundColor: Colors.deepPurple,
-            label: "Upload from Gallery",
-            onTap: () {
-              _openGallery(context);
-            },
+      floatingActionButton: Row(
+        children: <Widget>[
+          FloatingActionButton.extended(
+            label: Text("Photo"),
+            heroTag: UniqueKey(),
+            icon: Icon(Icons.camera),
+            onPressed: () => getImageFile(ImageSource.camera),
           ),
-          SpeedDialChild(
-            child: Icon(Icons.camera),
-            backgroundColor: Colors.deepPurple,
-            label: "Upload from Camera",
-            onTap: () {
-              _openCamera(context);
-            },
-          ),
-          SpeedDialChild(
-            child: Icon(Icons.navigate_next),
-            backgroundColor: Colors.deepPurple,
-            label: "NEXT",
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Uploads()),
-              );
-            },
+          FloatingActionButton.extended(
+            label: Text("Galery"),
+            heroTag: UniqueKey(),
+            icon: Icon(Icons.photo_library),
+            onPressed: () => getImageFile(ImageSource.gallery),
           ),
         ],
       ),
