@@ -18,6 +18,7 @@ environment:
 
 dependencies:
   flutter_speed_dial: 1.2.5
+  storage_path: 0.2.0
   dropdownfield: 1.0.3
   curved_navigation_bar: 0.3.3
   photo_manager: 0.5.6
@@ -29,7 +30,6 @@ dependencies:
   uuid: 2.0.4
   http: 0.12.1
   shared_preferences:
-
   flutter:
     sdk: flutter
   simple_animations: ^1.1.3

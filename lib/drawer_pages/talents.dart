@@ -1,71 +1,143 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:talenthunt/drawer_pages/file.dart';
+import 'package:storage_path/storage_path.dart';
 
+// void main() {
+//   runApp(MyApp());
+// }
 
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Instagrm picker demo',
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         visualDensity: VisualDensity.adaptivePlatformDensity,
+//       ),
+//       home: MyHomePage(title: 'Flutter Demo Home Page'),
+//     );
+//   }
+// }
 
 class Talents extends StatefulWidget {
+  Talents({Key key, this.title}) : super(key: key);
+
+  final String title;
+
   @override
   _TalentsState createState() => _TalentsState();
 }
 
 class _TalentsState extends State<Talents> {
-  File _image;
+  List<FileModel> files;
+  FileModel selectedModel;
+  String image;
+  @override
+  void initState() {
+    super.initState();
+    getImagesPath();
+  }
 
-  getImageFile(ImageSource source) async {
-    //
-    var image = await ImagePicker.platform.pickImage(source: source);
-    File cropppedFile = await ImageCropper.cropImage(
-      sourcePath: image.path,
-      aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0),
-      maxHeight: 512,
-      maxWidth: 512,
-    );
-    setState(() {
-      _image = cropppedFile;
-    });
+  getImagesPath() async {
+    var imagePath = await StoragePath.imagesPath;
+    var images = jsonDecode(imagePath) as List;
+    files = images.map<FileModel>((e) => FileModel.fromJson(e)).toList();
+    if (files != null && files.length > 0)
+      setState(() {
+        selectedModel = files[0];
+        image = files[0].files[0];
+      });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Crop"),
-      ),
-      body: SafeArea(
-        child: Column(children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height / 2.2,
-            child: Center(
-              child: _image == null
-                  ? Text("Image")
-                  : Image.file(
-                _image,
-                height: 200,
-                width: 200,
-              ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(Icons.clear),
+                    SizedBox(width: 10),
+                    DropdownButtonHideUnderline(
+                        child: DropdownButton<FileModel>(
+                      items: getItems(),
+                      onChanged: (FileModel d) {
+                        assert(d.files.length > 0);
+                        image = d.files[0];
+                        setState(() {
+                          selectedModel = d;
+                        });
+                      },
+                      value: selectedModel,
+                    ))
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Next',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                )
+              ],
             ),
-          ),
-         // Expanded(child: BuildGrid()),
-        ]),
-      ),
-      floatingActionButton: Row(
-        children: <Widget>[
-          FloatingActionButton.extended(
-            label: Text("Photo"),
-            heroTag: UniqueKey(),
-            icon: Icon(Icons.camera),
-            onPressed: () => getImageFile(ImageSource.camera),
-          ),
-          FloatingActionButton.extended(
-            label: Text("Galery"),
-            heroTag: UniqueKey(),
-            icon: Icon(Icons.photo_library),
-            onPressed: () => getImageFile(ImageSource.gallery),
-          ),
-        ],
+            Divider(),
+            Container(
+                height: MediaQuery.of(context).size.height * 0.45,
+                child: image != null
+                    ? Image.file(File(image),
+                        height: MediaQuery.of(context).size.height * 0.45,
+                        width: MediaQuery.of(context).size.width)
+                    : Container()),
+            Divider(),
+            selectedModel == null && selectedModel.files.length < 1
+                ? Container()
+                : Container(
+                    height: MediaQuery.of(context).size.height * 0.38,
+                    child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                            crossAxisSpacing: 4,
+                            mainAxisSpacing: 4),
+                        itemBuilder: (_, i) {
+                          var file = selectedModel.files[i];
+                          return GestureDetector(
+                            child: Image.file(
+                              File(file),
+                              fit: BoxFit.cover,
+                            ),
+                            onTap: () {
+                              setState(() {
+                                image = file;
+                              });
+                            },
+                          );
+                        },
+                        itemCount: selectedModel.files.length),
+                  )
+          ],
+        ),
       ),
     );
+  }
+
+  List<DropdownMenuItem> getItems() {
+    return files
+            .map((e) => DropdownMenuItem(
+                  child: Text(
+                    e.folder,
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  value: e,
+                ))
+            .toList() ??
+        [];
   }
 }
