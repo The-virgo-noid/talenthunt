@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:talenthunt/drawer_pages/world.dart';
+import '../HomePage.dart';
 
 class Firstscreen extends StatefulWidget {
   Firstscreen({Key key, this.title}) : super(key: key);
@@ -83,7 +83,7 @@ class _FirstscreenState extends State<Firstscreen> {
                   child: Text("Next"),
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => World()));
+                        MaterialPageRoute(builder: (context) => MyHomePage()));
                   },
                   padding: EdgeInsets.all(10),
                   elevation: 10,
