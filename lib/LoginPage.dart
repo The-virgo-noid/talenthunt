@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:talenthunt/Animations/FadeAnimation.dart';
 import 'package:talenthunt/SignUpForm.dart';
+import 'package:talenthunt/drawer_pages/firstscreen.dart';
 import 'HomePage.dart';
 
 class LoginPage extends StatelessWidget {
@@ -81,7 +82,7 @@ class LoginPage extends StatelessWidget {
                   Navigator.push(
                       context,
                       new MaterialPageRoute(
-                          builder: (context) => MyHomePage()));
+                          builder: (context) => Firstscreen()));
                 },
                 child: Container(
                   height: 50.0,
