@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
         bottomNavigationBar: CurvedNavigationBar(
           // key: _bottomNavigationKey,
           index: 0,
-          height: 50,
+          height: 45,
           items: <Widget>[
             Icon(Icons.home, size: 30),
             Icon(Icons.search, size: 30),
@@ -86,9 +86,9 @@ class _MyHomePageState extends State<MyHomePage> {
             Icon(Icons.message, size: 30),
             Icon(Icons.perm_identity, size: 30),
           ],
-          color: Colors.white,
-          buttonBackgroundColor: Colors.white,
-          backgroundColor: Colors.blueAccent,
+          color: Colors.cyanAccent,
+          buttonBackgroundColor: Colors.cyanAccent,
+          backgroundColor: Colors.white,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 300),
 

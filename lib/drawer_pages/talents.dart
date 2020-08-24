@@ -3,24 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:talenthunt/drawer_pages/file.dart';
 import 'package:storage_path/storage_path.dart';
+import 'package:talenthunt/drawer_pages/uploads.dart';
 
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Instagrm picker demo',
-//       debugShowCheckedModeBanner: false,
-//       theme: ThemeData(
-//         visualDensity: VisualDensity.adaptivePlatformDensity,
-//       ),
-//       home: MyHomePage(title: 'Flutter Demo Home Page'),
-//     );
-//   }
-// }
 
 class Talents extends StatefulWidget {
   Talents({Key key, this.title}) : super(key: key);
@@ -63,7 +47,28 @@ class _TalentsState extends State<Talents> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Icon(Icons.clear),
+                    // FlatButton(
+                    //   color: Colors.blue,
+                    //   textColor: Colors.white,
+                    //   disabledColor: Colors.grey,
+                    //   disabledTextColor: Colors.black,
+                    //   padding: EdgeInsets.all(8.0),
+                    //   splashColor: Colors.blueAccent,
+                    //   onPressed: () {
+                    //   Navigator.pop(context);
+                    //   },
+                    //   child: Text(
+                    //     "Cancel",
+                    //     style: TextStyle(fontSize: 20.0),
+                    //  ),             
+                    // ),
+                    
+                    //Icon(Icons.clear),
+                    IconButton(icon: Icon(Icons.clear),
+                    onPressed: () => Navigator.pop(context),
+                    ),
+
+
                     SizedBox(width: 10),
                     DropdownButtonHideUnderline(
                         child: DropdownButton<FileModel>(
@@ -81,10 +86,22 @@ class _TalentsState extends State<Talents> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Next',
-                    style: TextStyle(color: Colors.blue),
-                  ),
+                  child: FlatButton(
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    disabledColor: Colors.grey,
+                    disabledTextColor: Colors.black,
+                    padding: EdgeInsets.all(8.0),
+                    splashColor: Colors.blueAccent,
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Uploads()));
+                    },
+                    child: Text(
+                      "Next",
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                  ), 
                 )
               ],
             ),

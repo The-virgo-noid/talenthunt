@@ -36,6 +36,7 @@ class _FirstscreenState extends State<Firstscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.cyanAccent,
       // appBar: AppBar(
       //   title: Text("Categories"),
       //   centerTitle: true,
@@ -79,15 +80,21 @@ class _FirstscreenState extends State<Firstscreen> {
                 customFilterChipWidget(
                     "Acting", 10, _value10, Colors.redAccent),
                 customFilterChipWidget("Crafting", 11, _value11, Colors.grey),
-                RaisedButton(
-                  child: Text("Next"),
-                  onPressed: () {
+                FloatingActionButton(
+                  onPressed:() {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyHomePage()));
+                      MaterialPageRoute(builder: (context) => MyHomePage()));                    
                   },
-                  padding: EdgeInsets.all(10),
-                  elevation: 10,
-                ),
+                  child: Icon(Icons.arrow_forward_ios), )
+                // RaisedButton(
+                //   child: Text("Next"),
+                //   onPressed: () {
+                //     Navigator.push(context,
+                //         MaterialPageRoute(builder: (context) => MyHomePage()));
+                //   },
+                //   padding: EdgeInsets.all(10),
+                //   elevation: 10,
+                // ),
               ],
             ),
           )
