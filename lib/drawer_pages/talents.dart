@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:talenthunt/drawer_pages/camera_screen.dart';
 import 'package:talenthunt/drawer_pages/file.dart';
 import 'package:storage_path/storage_path.dart';
 import 'package:talenthunt/drawer_pages/uploads.dart';
+import 'package:talenthunt/widgets/CustomAppBar.dart';
 
 
 class Talents extends StatefulWidget {
@@ -26,6 +28,7 @@ class _TalentsState extends State<Talents> {
   }
 
   getImagesPath() async {
+    //var camera = await StoragePath.camera;
     var imagePath = await StoragePath.imagesPath;
     var images = jsonDecode(imagePath) as List;
     files = images.map<FileModel>((e) => FileModel.fromJson(e)).toList();
@@ -36,9 +39,23 @@ class _TalentsState extends State<Talents> {
       });
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: customAppBar(
+        title: "Gallery",
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.camera_alt),
+            onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => CameraScreen(null)));             // first talents now camera
+                  },
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -47,23 +64,7 @@ class _TalentsState extends State<Talents> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    // FlatButton(
-                    //   color: Colors.blue,
-                    //   textColor: Colors.white,
-                    //   disabledColor: Colors.grey,
-                    //   disabledTextColor: Colors.black,
-                    //   padding: EdgeInsets.all(8.0),
-                    //   splashColor: Colors.blueAccent,
-                    //   onPressed: () {
-                    //   Navigator.pop(context);
-                    //   },
-                    //   child: Text(
-                    //     "Cancel",
-                    //     style: TextStyle(fontSize: 20.0),
-                    //  ),             
-                    // ),
-                    
-                    //Icon(Icons.clear),
+                   
                     IconButton(icon: Icon(Icons.clear),
                     onPressed: () => Navigator.pop(context),
                     ),
@@ -143,7 +144,12 @@ class _TalentsState extends State<Talents> {
         ),
       ),
     );
+    
   }
+
+  
+    
+
 
   List<DropdownMenuItem> getItems() {
     return files
@@ -157,4 +163,4 @@ class _TalentsState extends State<Talents> {
             .toList() ??
         [];
   }
-}
+} 

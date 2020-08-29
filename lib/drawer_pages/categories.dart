@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+//import 'package:talenthunt/drawer_pages/camera.dart';
+import 'package:talenthunt/drawer_pages/camera_screen.dart';
 //import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:talenthunt/drawer_pages/talents.dart';
 
@@ -84,7 +87,7 @@ class _CategoriesState extends State<Categories> {
                   child: Text("Next"),
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Talents()));
+                        MaterialPageRoute(builder: (context) => Talents()));             // first talents now camera
                   },
                   padding: EdgeInsets.all(10),
                   elevation: 10,

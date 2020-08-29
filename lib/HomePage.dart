@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
           color: Colors.cyanAccent,
           buttonBackgroundColor: Colors.cyanAccent,
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.white ,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 300),
 
