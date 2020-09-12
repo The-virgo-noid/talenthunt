@@ -9,8 +9,9 @@ import 'package:talenthunt/widgets/PrivacyScreen.dart';
 import 'SecurityScreen.dart';
 
 pickImage(BuildContext context, Map profileData, ImageSource source) async {
-  File image =
-      await ImagePicker.pickImage(source: source); //syncs with gallery and app
+  final _picker = ImagePicker();
+  final pickedFile = await _picker.getImage(source: source);
+  final File image = File(pickedFile.path); //syncs with gallery and app
   if (image == null) {
     Fluttertoast.showToast(msg: "No photo was selected");
   } else {
@@ -57,7 +58,6 @@ showDialogBox(BuildContext context, Map profileData) {
 class EditScreen extends StatelessWidget {
   final Map profileData;
   EditScreen({this.profileData});
-  bool switch1 = false, switch2 = true, switch3 = false;
 
   final List<String> settings = ['Privacy', 'Security'];
 
