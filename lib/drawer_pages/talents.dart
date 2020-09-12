@@ -7,7 +7,6 @@ import 'package:storage_path/storage_path.dart';
 import 'package:talenthunt/drawer_pages/uploads.dart';
 import 'package:talenthunt/widgets/CustomAppBar.dart';
 
-
 class Talents extends StatefulWidget {
   Talents({Key key, this.title}) : super(key: key);
 
@@ -18,8 +17,8 @@ class Talents extends StatefulWidget {
 }
 
 class _TalentsState extends State<Talents> {
-  List<FileModel> files;
-  FileModel selectedModel;
+  List<FileModel> files = [];
+  FileModel selectedModel = FileModel(files: [], folder: '');
   String image;
   @override
   void initState() {
@@ -28,7 +27,7 @@ class _TalentsState extends State<Talents> {
   }
 
   getImagesPath() async {
-    //var camera = await StoragePath.camera;
+    // var camera = await StoragePath.camera;
     var imagePath = await StoragePath.imagesPath;
     var images = jsonDecode(imagePath) as List;
     files = images.map<FileModel>((e) => FileModel.fromJson(e)).toList();
@@ -39,8 +38,6 @@ class _TalentsState extends State<Talents> {
       });
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,62 +46,75 @@ class _TalentsState extends State<Talents> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.camera_alt),
-            onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CameraScreen(null)));             // first talents now camera
-                  },
+            onPressed: () async {
+              image = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          CameraScreen())); // first talents now camera
+              if (image != null) {
+                setState(() {});
+              }
+            },
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                   
-                    IconButton(icon: Icon(Icons.clear),
-                    onPressed: () => Navigator.pop(context),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    width: 250,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.clear),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                        SizedBox(width: 10),
+                        DropdownButtonHideUnderline(
+                          child: DropdownButton<FileModel>(
+                            items: getItems(),
+                            onChanged: (FileModel d) {
+                              assert(d.files.length > 0);
+                              image = d.files[0];
+                              setState(() {
+                                selectedModel = d;
+                              });
+                            },
+                            value: selectedModel,
+                          ),
+                        )
+                      ],
                     ),
-
-
-                    SizedBox(width: 10),
-                    DropdownButtonHideUnderline(
-                        child: DropdownButton<FileModel>(
-                      items: getItems(),
-                      onChanged: (FileModel d) {
-                        assert(d.files.length > 0);
-                        image = d.files[0];
-                        setState(() {
-                          selectedModel = d;
-                        });
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: FlatButton(
+                      color: Colors.blue,
+                      textColor: Colors.white,
+                      disabledColor: Colors.grey,
+                      disabledTextColor: Colors.black,
+                      padding: EdgeInsets.all(8.0),
+                      splashColor: Colors.blueAccent,
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Uploads()));
                       },
-                      value: selectedModel,
-                    ))
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FlatButton(
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    disabledColor: Colors.grey,
-                    disabledTextColor: Colors.black,
-                    padding: EdgeInsets.all(8.0),
-                    splashColor: Colors.blueAccent,
-                    onPressed: () {
-                      Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Uploads()));
-                    },
-                    child: Text(
-                      "Next",
-                      style: TextStyle(fontSize: 20.0),
+                      child: Text(
+                        "Next",
+                        style: TextStyle(fontSize: 20.0),
+                      ),
                     ),
-                  ), 
-                )
-              ],
+                  )
+                ],
+              ),
             ),
             Divider(),
             Container(
@@ -144,23 +154,22 @@ class _TalentsState extends State<Talents> {
         ),
       ),
     );
-    
   }
-
-  
-    
-
 
   List<DropdownMenuItem> getItems() {
     return files
             .map((e) => DropdownMenuItem(
-                  child: Text(
-                    e.folder,
-                    style: TextStyle(color: Colors.black),
+                  child: Container(
+                    width: 150,
+                    child: Text(
+                      e.folder,
+                      style: TextStyle(color: Colors.black),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   value: e,
                 ))
             .toList() ??
         [];
   }
-} 
+}
