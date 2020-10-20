@@ -36,12 +36,7 @@ class _FirstscreenState extends State<Firstscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyanAccent,
-      // appBar: AppBar(
-      //   title: Text("Categories"),
-      //   centerTitle: true,
-      //   backgroundColor: Colors.lightBlueAccent,
-      // ),
+      backgroundColor: Colors.cyan[100],
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -86,15 +81,6 @@ class _FirstscreenState extends State<Firstscreen> {
                       MaterialPageRoute(builder: (context) => MyHomePage()));                    
                   },
                   child: Icon(Icons.arrow_forward_ios), )
-                // RaisedButton(
-                //   child: Text("Next"),
-                //   onPressed: () {
-                //     Navigator.push(context,
-                //         MaterialPageRoute(builder: (context) => MyHomePage()));
-                //   },
-                //   padding: EdgeInsets.all(10),
-                //   elevation: 10,
-                // ),
               ],
             ),
           )

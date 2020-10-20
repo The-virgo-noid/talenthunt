@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:talenthunt/drawer_pages/firstscreen.dart';
 
 class SignUpForm extends StatelessWidget{
   Widget build(BuildContext context){
@@ -7,19 +7,15 @@ class SignUpForm extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       title: 'Sign Up',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.cyan,
       ),
       home: SignUp(),);
   }
 }
 
-
-
 class SignUp extends StatefulWidget{
   SignUpState createState()=>SignUpState();
 }
-
-
 
 class SignUpState extends State{
 
@@ -29,8 +25,6 @@ class SignUpState extends State{
   final passcontroller = TextEditingController();
 
   Widget build(BuildContext context){
-
-
     final emailField = TextField(                                                     //email- textfield
       obscureText: false,
       controller: emailcontroller,
@@ -40,7 +34,6 @@ class SignUpState extends State{
           border:
           OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
     );
-
 
     final name = TextField(                                                                //username- textfield
       obscureText: false,
@@ -52,7 +45,6 @@ class SignUpState extends State{
           OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
     );
 
-
     final mobile = TextField(
       obscureText: false,
       controller: mobilecontroller,
@@ -63,7 +55,6 @@ class SignUpState extends State{
           OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
     );
 
-
     final passwordField = TextField(
       obscureText: true,
       controller: passcontroller,
@@ -73,7 +64,6 @@ class SignUpState extends State{
           border:
           OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
     );
-
 
     final loginButon = Material(
       elevation: 5.0,
@@ -93,18 +83,13 @@ class SignUpState extends State{
           showAlertDialog(context,user);
 
         },
-
         child: Text("Submit",textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white),),
-
+          style: TextStyle(color: Colors.white , fontSize: 18,), ),
       ),
     );
 
-
     return Scaffold(
-
-      appBar: AppBar(title: Text("Signup Form")),
-
+      appBar: AppBar(title: Text("Sign-Up "), centerTitle: true,),
       body: Center(
         child: Container(
           color: Colors.white,
@@ -114,78 +99,54 @@ class SignUpState extends State{
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 Text("Sign up Form",style: TextStyle(color:Colors.white)),
-
-                SizedBox(height: 45.0),
+                SizedBox(height: 0.0),
                 emailField,
-
-                SizedBox(height: 25.0),
+                SizedBox(height: 20.0),
                 name,
-
-                SizedBox(height: 25.0),
+                SizedBox(height: 20.0),
                 mobile,
-
-                SizedBox(height: 25.0),
+                SizedBox(height: 20.0),
                 passwordField,
-
-                SizedBox(height: 35.0,),
+                SizedBox(height: 30.0,),
                 loginButon,
-                SizedBox(height: 15.0,),
-
+                SizedBox(height: 5.0,),
               ],
             ),
           ),
         ),
-
       ),
-      floatingActionButton: SpeedDial(
-        curve: Curves.easeOutExpo,
-        child: Icon(Icons.arrow_forward),
-        overlayColor: Colors.black87,
-        backgroundColor: Colors.blueAccent,
-        animatedIconTheme: IconThemeData.fallback(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.arrow_forward , size: 40, color: Colors.white,),
         shape: CircleBorder(),
-        children: [
-          SpeedDialChild(
-            child: Icon(Icons.arrow_forward),
-            backgroundColor: Colors.deepPurple,
-            label: "Next",
-            onTap: () {
-
-            },
-          )
-        ],
+        backgroundColor: Colors.blueAccent,
+        splashColor: Colors.green,
+        onPressed: () {
+          Navigator.push(
+              context,
+              new MaterialPageRoute(builder: (context) => Firstscreen()));
+        },
       ),
     );
 
   }
 }
 
-
-
 showAlertDialog(BuildContext context,User user){                                              //alertdialoguebox
-
   Widget gotIt = FlatButton(
-
     child: Text("Got It"),
     onPressed: () {
-
       Navigator.of(context, rootNavigator: true).pop('alert');
     },
   );
 
   AlertDialog alert = AlertDialog(
-
     title: Text("Your Credentials"),
-
     content: Text(user.email+"\n"+user.name+"\n"+user.mobile+"\n"+user.pass),
-
     actions: [
       gotIt,
     ],
   );
-
 
   showDialog(
     context: context,
@@ -194,8 +155,6 @@ showAlertDialog(BuildContext context,User user){                                
     },
   );
 }
-
-
 
 //model class
 class User{

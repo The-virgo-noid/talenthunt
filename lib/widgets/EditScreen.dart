@@ -1,11 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:talenthunt/widgets/PrivacyScreen.dart';
-
 import 'SecurityScreen.dart';
 
 pickImage(BuildContext context, Map profileData, ImageSource source) async {
@@ -43,7 +41,6 @@ showDialogBox(BuildContext context, Map profileData) {
                   child: Text("Add image from Camera"),
                   onPressed: () {
                     pickImage(context, profileData, ImageSource.camera);
-
                     print("Button2 clicked");
                   },
                 )
@@ -57,9 +54,7 @@ showDialogBox(BuildContext context, Map profileData) {
 class EditScreen extends StatelessWidget {
   final Map profileData;
   EditScreen({this.profileData});
-
   final List<String> settings = ['Privacy', 'Security'];
-
   final textfieldDecoration = InputDecoration(
     contentPadding: EdgeInsets.symmetric(
       horizontal: 10,
@@ -117,7 +112,7 @@ class EditScreen extends StatelessWidget {
             ),
             FloatingActionButton(
               heroTag: "btn2",
-              child: Icon(Icons.add),
+              child: Icon(Icons.check),
               onPressed: () async {
                 Fluttertoast.showToast(msg: "Saving Profile....");
                 Navigator.pop(context, profileData);

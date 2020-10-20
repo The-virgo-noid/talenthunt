@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talenthunt/SignUpForm.dart';
 import 'package:talenthunt/widgets/CustomAppBar.dart';
-import 'package:talenthunt/widgets/EditScreen.dart';
 import './notification.dart' as localNotificationPage;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -14,7 +12,7 @@ class _WorldState extends State<World> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.white,      (here you  can set the background color of your choice)
+      //backgroundColor: Colors.white ,
       appBar: customAppBar(
         title: "Home",
         actions: <Widget>[
@@ -42,6 +40,7 @@ class _WorldState extends State<World> {
                   icon: Icon(
                     Icons.more_horiz,
                     size: 45.0,
+                    color: Colors.cyan,
                   ),
                   onPressed: () {
                     showDialog(
@@ -72,6 +71,7 @@ class _WorldState extends State<World> {
                     IconButton(
                         icon: Icon(
                           Icons.account_circle,
+                          color: Colors.cyan,
                           size: 45.0,
                         ),
                         onPressed: () {}),
@@ -82,6 +82,7 @@ class _WorldState extends State<World> {
                         icon: Icon(
                           Icons.favorite,
                           size: 45.0,
+                          color: Colors.cyan,
                         ),
                         onPressed: () {}),
                     SizedBox(
@@ -91,6 +92,7 @@ class _WorldState extends State<World> {
                         icon: FaIcon(
                           FontAwesomeIcons.commentAlt,
                           size: 40.0,
+                          color: Colors.cyan,
                         ),
                         onPressed: () {}),
                     SizedBox(
@@ -99,7 +101,8 @@ class _WorldState extends State<World> {
                     IconButton(
                         icon: Icon(
                           Icons.share,
-                          size: 45.0,        // share command here
+                          size: 45.0,
+                          color: Colors.cyan,// share command here
                         ),
                         onPressed: () {}),
                   ],

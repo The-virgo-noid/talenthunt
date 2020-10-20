@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class Uploads extends StatefulWidget {
   @override
   _UploadsState createState() => _UploadsState();
@@ -12,8 +11,6 @@ class _UploadsState extends State<Uploads> {
   final _formKey = GlobalKey<FormState>();
   Map<String, dynamic> formData;
   List<String> field = [ 'Dance' , 'Singing' , 'Sports' , 'Others', ];
-
-
 
   _UploadsState() {
     formData = {
@@ -34,10 +31,12 @@ class _UploadsState extends State<Uploads> {
               } else {
                 if (snapshot.data != null)
                   return Scaffold(
+
                     appBar: AppBar(
                       titleSpacing: 10.0,
                       title: Text('New Post'),
                       centerTitle: true,
+                      backgroundColor: Colors.cyan[300],
                       actions: <Widget>[
                         Builder(
                           builder: (BuildContext context) {

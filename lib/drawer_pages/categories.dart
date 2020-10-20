@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-//import 'package:talenthunt/drawer_pages/camera.dart';
 import 'package:talenthunt/drawer_pages/camera_screen.dart';
-//import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:talenthunt/drawer_pages/talents.dart';
+import 'package:nice_button/nice_button.dart';
+
 
 class Categories extends StatefulWidget {
   Categories({Key key, this.title}) : super(key: key);
@@ -40,10 +38,11 @@ class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.cyan[100],
       appBar: AppBar(
         title: Text("Categories"),
         centerTitle: true,
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Colors.cyan[300],
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -53,7 +52,7 @@ class _CategoriesState extends State<Categories> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 customFilterChipWidget(
-                    "Comedy", 0, _value0, Colors.lightBlueAccent),
+                    "Comedy", 0, _value0, Colors.grey),
                 customFilterChipWidget(
                     "Flute", 1, _value1, Colors.yellowAccent),
                 customFilterChipWidget(
@@ -83,15 +82,16 @@ class _CategoriesState extends State<Categories> {
                 customFilterChipWidget(
                     "Acting", 10, _value10, Colors.redAccent),
                 customFilterChipWidget("Crafting", 11, _value11, Colors.grey),
-                RaisedButton(
-                  child: Text("Next"),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Talents()));             // first talents now camera
-                  },
-                  padding: EdgeInsets.all(10),
-                  elevation: 10,
-                ),
+                NiceButton(
+                    width: 105,
+                    elevation: 3.0,
+                    radius: 42.0,
+                    text: "NEXT",
+                    background: Colors.blueAccent,
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Talents()));    //ImagePick
+                    }),
               ],
             ),
           )
@@ -152,10 +152,11 @@ class _CategoriesState extends State<Categories> {
       child: FilterChip(
         pressElevation: 0.0,
         selectedColor: selectedColor,
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.grey[100],  
         label: Text(
           title,
-          style: textStyle,
+          style: TextStyle(color: Colors.blueAccent , fontSize: 30),
+
         ),
         selected: value == 0,
         onSelected: (bool selected) {

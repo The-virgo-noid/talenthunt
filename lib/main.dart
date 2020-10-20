@@ -8,6 +8,7 @@ void main() => runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       accentColor: Colors.cyan[300],
+      
     ),
     home: Welcomepage()));
 
