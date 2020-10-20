@@ -7,8 +7,9 @@ import 'package:talenthunt/widgets/PrivacyScreen.dart';
 import 'SecurityScreen.dart';
 
 pickImage(BuildContext context, Map profileData, ImageSource source) async {
-  File image =
-      await ImagePicker.pickImage(source: source); //syncs with gallery and app
+  final _picker = ImagePicker();
+  final pickedFile = await _picker.getImage(source: source);
+  final File image = File(pickedFile.path); //syncs with gallery and app
   if (image == null) {
     Fluttertoast.showToast(msg: "No photo was selected");
   } else {
@@ -224,30 +225,9 @@ class EditScreen extends StatelessWidget {
                   SizedBox(
                     height: 20.0,
                   ),
-                  Text(
-                    'Notification Settings',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  NotificationSetting(),
                   SizedBox(
                     height: 5.0,
-                  ),
-                  SwitchListTile(
-                    value: true,
-                    title: Text("Received Notification"),
-                    onChanged: (val) {},
-                  ),
-                  SwitchListTile(
-                    value: false,
-                    title: Text("Received Notification"),
-                    onChanged: (val) {},
-                  ),
-                  SwitchListTile(
-                    value: true,
-                    title: Text("Received Notification"),
-                    onChanged: (val) {},
                   ),
                 ],
               ),
@@ -255,6 +235,56 @@ class EditScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class NotificationSetting extends StatefulWidget {
+  @override
+  _NotificationSettingState createState() => _NotificationSettingState();
+}
+
+class _NotificationSettingState extends State<NotificationSetting> {
+  bool switch1 = true, switch2 = false, switch3 = true;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          'Notification Settings',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SwitchListTile(
+          value: switch1,
+          title: Text("Received Notification"),
+          onChanged: (val) {
+            setState(() {
+              switch1 = val;
+            });
+          },
+        ),
+        SwitchListTile(
+          value: switch2,
+          title: Text("Received Notification"),
+          onChanged: (val) {
+            setState(() {
+              switch2 = val;
+            });
+          },
+        ),
+        SwitchListTile(
+          value: switch3,
+          title: Text("Received Notification"),
+          onChanged: (val) {
+            setState(() {
+              switch3 = val;
+            });
+          },
+        ),
+      ],
     );
   }
 }
